@@ -1108,8 +1108,8 @@
         </div>
         <button id="taxonomyInfoBtn" class="icon-button" type="button" title="About these taxonomies" aria-label="About these taxonomies">ⓘ</button>
         <div class="seg" aria-label="Language">
-          <button id="langEn" class="active" type="button" title="English">EN</button>
-          <button id="langKo" type="button" title="한국어">KO</button>
+          <button id="langEn" type="button" title="English">EN</button>
+          <button id="langKo" class="active" type="button" title="한국어">KO</button>
         </div>
         <select id="sortSelect" class="select" title="Sort paper list">
           <option value="cites-desc">Cites ↓</option>
@@ -1413,7 +1413,7 @@
       search: "",
       sort: "cites-desc",
       curatedTopic: (payload.curatedTopics && payload.curatedTopics[0] ? payload.curatedTopics[0].id : null),
-      lang: "en"
+      lang: "ko"
     };
 
     const el = {
@@ -1486,7 +1486,7 @@
     }
 
     let suppressUrlSync = false;
-    const URL_DEFAULTS = { taxonomy: "technical", mode: "sunburst", search: "", sort: "cites-desc", lang: "en" };
+    const URL_DEFAULTS = { taxonomy: "technical", mode: "sunburst", search: "", sort: "cites-desc", lang: "ko" };
 
     function syncUrlToState(replace) {
       if (suppressUrlSync) return;
@@ -1522,7 +1522,7 @@
         search: params.get("q") || "",
         sort: params.get("sort") || URL_DEFAULTS.sort,
         curatedTopic: topic || (payload.curatedTopics && payload.curatedTopics[0] ? payload.curatedTopics[0].id : null),
-        lang: lang === "ko" ? "ko" : "en"
+        lang: lang === "en" ? "en" : "ko"
       };
     }
 
@@ -2237,7 +2237,7 @@
       document.querySelectorAll(".seg button").forEach(b => b.classList.remove("active"));
       document.getElementById("modeSunburst").classList.add("active");
       document.getElementById("taxonomyTechnical").classList.add("active");
-      document.getElementById("langEn").classList.add("active");
+      document.getElementById("langKo").classList.add("active");
       applyStaticI18n();
       syncUrlToState(false);
       render();
